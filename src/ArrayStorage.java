@@ -11,21 +11,21 @@ public class ArrayStorage {
     }
 
     void save(Resume resume) {
-
+        storage[9999] = resume;
     }
 
     Resume get(String uuid) {
-        if(storage[0].uuid.equals(uuid)) {
-            return storage[0];
-        }
-        return null;
+         if (storage[1].uuid.equals(uuid)) {
+             return storage[1];
+         }
+         return null;
     }
 
     void delete(String uuid) {
-        storage[4] = null;
-        for (int i = 2;i < storage.length;i++) {
-            storage[i - 1] = storage[i];
-            storage[i] = null;
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                storage[i] = null;
+            }
         }
     }
 

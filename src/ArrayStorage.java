@@ -10,7 +10,7 @@ public class ArrayStorage {
     int size = 0;
 
     void clear() {
-        Arrays.fill(storage, 0, size() + 1, null);
+        Arrays.fill(storage, 0, size, null);
 
     }
 
@@ -20,27 +20,24 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
-        for (Resume resume : storage) {
-            if (resume.uuid.equals(uuid)) {
-                return resume;
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                return storage[i];
             }
         }
         return null;
     }
 
     void delete(String uuid) {
-        int pointerToDeletedResume = 0;
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size; i++) {
+
             if (storage[i].uuid.equals(uuid)) {
-                storage[i] = null;
-                pointerToDeletedResume = i;
+                size--;
+                storage[i] = storage[size];
+
                 break;
             }
         }
-        for (int i = pointerToDeletedResume; i < size; i++) {
-            storage[i] = storage[i + 1];
-        }
-        size--;
     }
 
     /**

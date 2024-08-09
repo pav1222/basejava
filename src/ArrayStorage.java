@@ -9,12 +9,23 @@ public class ArrayStorage {
 
     int size = 0;
 
+    public void update(Resume resume) {
+        for (int i = 0; i < size; i++) {
+            if (storage[i].uuid.equals(resume.uuid)) {
+                storage[i] = resume;
+            }
+        }
+    }
+
     void clear() {
         Arrays.fill(storage, 0, size, null);
 
     }
 
     void save(Resume resume) {
+        if (storage.length > size) {
+            System.out.println("Error.Array overflow");
+        }
         storage[size] = resume;
         size++;
     }
@@ -29,6 +40,7 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
+
         for (int i = 0; i < size; i++) {
 
             if (storage[i].uuid.equals(uuid)) {

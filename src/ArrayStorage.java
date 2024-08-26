@@ -6,11 +6,11 @@ import java.util.Arrays;
  */
 public class ArrayStorage {
     final int STORAGE_LIMIT = 10000;
-    private final Resume[] storage = new Resume[STORAGE_LIMIT];
+    protected final Resume[] storage = new Resume[STORAGE_LIMIT];
 
     int size = 0;
 
-    int getIndex(String uuid) {
+   protected int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 return i;
@@ -36,18 +36,21 @@ public class ArrayStorage {
         int index = getIndex(resume.uuid);
         if (storage.length > size) {
             System.out.println("Error.Array overflow");
-        }
+        } else {
         storage[index] = resume;
         size++;
     }
+   }
 
-    Resume get(String uuid) {
+   public Resume get(String uuid) {
         int index = getIndex(uuid);
         if (index != -1) {
             return storage[index];
-            }
-        return null;
+        } else {
+            System.out.println("Element not found");
         }
+        return null;
+   }
 
 
 
@@ -75,7 +78,7 @@ public class ArrayStorage {
         return Arrays.copyOf(storage, size);
     }
 
-    int size() {
+   protected int size() {
         return size;
     }
 }
